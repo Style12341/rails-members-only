@@ -6,15 +6,15 @@
   <h1>Posts</h1>
   <%= link_to 'Sign in', new_user_session_path %>
   <%= link_to 'Sign up', new_user_registration_path %>
-<% end %>rv
+<% end %>
 <%# Display all posts%>
 <% @posts.each do |post| %>
   <h2><%= post.title %></h2>
   <p><%= post.content %></p>
   <p>     <%=  user_signed_in? ? post.user.name : "Redacted"%></p>
-  <% if false %>
-    <%= link_to 'Show', post %>
+  <%= link_to 'Show', post %>
+  <% if  post.user == current_user%>
     <%= link_to 'Edit', edit_post_path(post) %>
-    <%= link_to 'Destroy', post, 'data-turbo-method': :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Delete', post, 'data-turbo-method': :delete, data: { confirm: 'Are you sure?' } %>
   <% end %>
 <% end %>
